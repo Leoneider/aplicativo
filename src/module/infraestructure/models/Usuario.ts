@@ -32,6 +32,9 @@ export class Usuario {
     @Column()
     direccion: string
 
+    @Column({
+    unique: true
+    })
     @Column()
     email: string
 
