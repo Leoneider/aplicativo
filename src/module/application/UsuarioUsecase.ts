@@ -11,6 +11,11 @@ export class UseCase {
 		return result;
 	}
 
+	async selectUsuario(userEntity: UserEntity) {
+		const result = await this.operation.getUsuario(userEntity);
+		return result;
+	}
+
 	async insert(userEntity: UserEntity) {
 		const result = await this.operation.insert(userEntity);
 		return result;
