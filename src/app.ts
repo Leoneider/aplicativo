@@ -1,8 +1,10 @@
 import express from 'express';
 import { Errors } from './helpers/errors.helper';
 import { UsuarioRouter } from './module/infraestructure/UsuarioRouter';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
