@@ -16,6 +16,17 @@ export class Operation implements Repository {
 		return user;
 	}
 
+	async getUsuario(userEntity: Partial<UserEntity>): Promise<UserEntity> {
+		let usuarioRepository = getManager().getRepository(Usuario);
+
+		const user: UserEntity = await usuarioRepository.findOne({ where: userEntity })
+		
+
+		return user;
+	}
+
+
+
 	async insert(userEntity: UserEntity): Promise<UserEntity> {
 		const usuarioRepository = getConnection().getRepository(Usuario);
 		const usuario = new Usuario();

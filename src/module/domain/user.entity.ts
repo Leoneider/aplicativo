@@ -19,7 +19,7 @@ export class UserEntity {
 		this.documento = ob.documento;
 		this.direccion = ob.direccion;
 		this.email = ob.email;
-		this.email = ob.email;
+		this.telefono = ob.telefono;
 		this.path_imagen = ob.path_imagen;
 		this.estado = ob.estado;
 		this.has_doble_factor = ob.has_doble_factor;

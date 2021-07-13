@@ -20,6 +20,18 @@ UsuarioRouter.get(
 	})
 );
 
+UsuarioRouter.get(
+	'/:email',
+	Errors.asyncError(async (req: Request, res: Response) => {
+		let email = req.params.email
+		const userEntity: UserEntity = new UserBuilder()
+		.addEmail(email);
+		
+		const result: UserEntity = await useCase.selectUsuario(userEntity);
+		res.status(200).send(result);
+	})
+);
+
 UsuarioRouter.post(
 	'/',
 	Errors.asyncError(async (req: Request, res: Response) => {
