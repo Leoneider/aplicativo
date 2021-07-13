@@ -10,9 +10,10 @@ export class Operation implements Repository {
 	async getUsuarios(): Promise<UserEntity[]> {
 		let usuarioRepository = getManager().getRepository(Usuario);
 
-		const user: UserEntity[] = await usuarioRepository.createQueryBuilder('user')
-		.select(['user.id', 'user.nombres'])
-		.getRawMany();
+		const user: UserEntity[] = await usuarioRepository
+			.createQueryBuilder('user')
+			.select()
+			.getRawMany();
 
 		return user;
 	}
@@ -27,6 +28,7 @@ export class Operation implements Repository {
 		usuario.documento = userEntity.documento;
 		usuario.direccion = userEntity.direccion;
 		usuario.email = userEntity.email;
+		usuario.telefono = userEntity.telefono;
 		usuario.cargo_id = userEntity.cargo_id;
 		usuario.has_doble_factor = userEntity.has_doble_factor;
 

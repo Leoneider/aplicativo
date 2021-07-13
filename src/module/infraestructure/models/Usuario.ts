@@ -24,7 +24,9 @@ export class Usuario {
     @Column()
     segundo_apellido: string
 
-    @Column()
+    @Column({
+    unique: true
+    })
     documento: string
 
     @Column()
@@ -32,6 +34,9 @@ export class Usuario {
 
     @Column()
     email: string
+
+    @Column()
+    telefono: string
 
     @Column({nullable: true})
     path_imagen: string

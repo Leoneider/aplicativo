@@ -6,6 +6,7 @@ export class UserBuilder {
 	documento: string;
 	direccion: string;
 	email: string;
+	telefono: string;
 	path_imagen: string;
 	estado: string;
 	has_doble_factor: Date;
@@ -25,20 +26,29 @@ export class UserBuilder {
 		this.primer_apellido = primer_apellido;
 		return this;
 	}
+
 	addSegundoApellido(segundo_apellido: string) {
 		this.segundo_apellido = segundo_apellido;
 		return this;
 	}
+
 	addDocumento(documento: string) {
 		this.documento = documento;
 		return this;
 	}
+
 	addDireccion(direccion: string) {
 		this.direccion = direccion;
 		return this;
 	}
+
 	addEmail(email: string) {
 		this.email = email;
+		return this;
+	}
+	
+	addTelefono(telefono: string) {
+		this.telefono = telefono;
 		return this;
 	}
 
@@ -75,6 +85,7 @@ export class UserEntity {
 	documento: string;
 	direccion: string;
 	email: string;
+	telefono: string;
 	path_imagen: string;
 	estado: string;
 	has_doble_factor: Date;
@@ -85,6 +96,7 @@ export class UserEntity {
 		this.segundo_apellido = ob.segundo_apellido;
 		this.documento = ob.documento;
 		this.direccion = ob.direccion;
+		this.email = ob.email;
 		this.email = ob.email;
 		this.path_imagen = ob.path_imagen;
 		this.estado = ob.estado;

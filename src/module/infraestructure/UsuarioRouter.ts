@@ -23,7 +23,7 @@ UsuarioRouter.get(
 UsuarioRouter.post(
 	'/',
 	Errors.asyncError(async (req: Request, res: Response) => {
-		const { nombres, primer_apellido, segundo_apellido, documento, direccion, email, cargo_id } = req.body;
+		const { nombres, primer_apellido, segundo_apellido, documento, direccion, email, telefono, cargo_id } = req.body;
 
 		let date: Date = new Date();
         	
@@ -34,6 +34,7 @@ UsuarioRouter.post(
 			.addDocumento(documento)
 			.addDireccion(direccion)
 			.addEmail(email)
+			.addTelefono(telefono)
 			.addCargoId(cargo_id)
 			.addHasDobleFactor(date)
 
