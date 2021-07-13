@@ -11,7 +11,7 @@ export class Errors {
 	static asyncError(
 		ftn: (req: Request, res: Response, next: NextFunction) => Promise<any>
 	) {
-		return (req: Request, res: Response, next: NextFunction) =>
+		return (req: Request, res: Response, next: NextFunction): Promise<any> =>
 			ftn(req, res, next).catch(err => {
 				let error: IError;
 
@@ -31,25 +31,24 @@ export class Errors {
 			});
 	}
 
-	static pathNotFoundError(req: Request, res: Response, next: NextFunction) {
+	static pathNotFoundError(
+		req: Request,
+		res: Response,
+		next: NextFunction
+	): void {
 		// res.status(404).json({ status: 404, message: "Path not found" });
 		const err: IError = new Error('Path not found');
 		err.status = 404;
 		next(err);
 	}
 
-	static genericError(
-		err: IError,
-		req: Request,
-		res: Response,
-		next: NextFunction
-	) {
+	static genericError(err: IError, req: Request, res: Response): void {
 		const objError: IError = {
 			name: err.name,
 			status: err.status,
 			message: err.message,
 		};
-		console.log('ERROR',process.env.NODE_ENV);
+		// console.log('ERROR', process.env.NODE_ENV);
 		if (process.env.NODE_ENV === 'development') {
 			objError.stack = err.stack;
 		}

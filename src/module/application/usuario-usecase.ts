@@ -1,30 +1,28 @@
 
 import { UserEntity } from '../domain/user.entity';
-import { Repository } from './UsuarioRepository';
-
+import { Repository } from './usuario-repository';
 
 export class UseCase {
 	constructor(private operation: Repository) {}
 
-	async select(userEntity: UserEntity) {
+	async select(userEntity: UserEntity): Promise<UserEntity[]> {
 		const result = await this.operation.getUsuarios(userEntity);
 		return result;
 	}
 
-	async insert(userEntity: UserEntity) {
+	async insert(userEntity: UserEntity): Promise<UserEntity> {
 		const result = await this.operation.insert(userEntity);
 		return result;
 	}
 
-	async update(id:number, userEntity: UserEntity) {
-		const result = await this.operation.update(id,userEntity);
+	async update(id:number, userEntity: UserEntity): Promise<UserEntity[]> {
+		const result = await this.operation.update(id, userEntity);
 		return result;
 	}
-	
-	async delete(id:string) {
+
+	async delete(id:string): Promise<UserEntity[]> {
 		const result = await this.operation.delete(id);
 		return result;
 	}
-	
-	
+
 }

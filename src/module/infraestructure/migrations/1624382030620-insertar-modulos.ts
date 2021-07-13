@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class InsertarModulos1624382030620 implements MigrationInterface {
-	public async up(queryRunner: QueryRunner): Promise<void> {
+	async up(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.query(`INSERT INTO modulos (id, nombre, descripcion) VALUES 
                                  (1,'aplicativo', 'Gestion de los permisos a los usuario registrados'), 
-                                 (2,'comercial', 'Creacion de comercios y cuadrantes'),
+                                  (2,'comercial', 'Creacion de comercios y cuadrantes'),
                                  (3,'incidencias', 'Creacion y gestion de incidencias'),
                                  (4,'inventario', 'Gestion de terminales, sim card y demas accesorioS de una terminal'),
                                  (5,'laboratorio', 'Gestion de bodegas y laboratorios')`);
@@ -17,5 +17,7 @@ export class InsertarModulos1624382030620 implements MigrationInterface {
                                  ('laboratorio', 'laboratorio', true,'',5)`);
 	}
 
-	public async down(queryRunner: QueryRunner): Promise<void> {}
+	async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.query(``);
+	}
 }

@@ -2,7 +2,7 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class InsertarFuncionalidadesAplicativo1624391845578
 	implements MigrationInterface {
-	public async up(queryRunner: QueryRunner): Promise<void> {
+	async up(queryRunner: QueryRunner): Promise<void> {
 		// CREAR ROLES
 		await queryRunner.query(`INSERT INTO funcionalidades (nombre, submodulo_id) VALUES
                                                              ('crear roles', 1)`);
@@ -26,5 +26,7 @@ export class InsertarFuncionalidadesAplicativo1624391845578
 													('Eliminar usuario', 'crear-usuario', false, '', 2)`);
 	}
 
-	public async down(queryRunner: QueryRunner): Promise<void> {}
+	async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.query(``);
+	}
 }

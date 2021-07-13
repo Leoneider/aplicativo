@@ -1,14 +1,12 @@
-import { Repository } from '../application/UsuarioRepository';
+import { Repository } from '../application/usuario-repository';
 import { UserEntity } from '../domain/user.entity';
 
-import { DeleteResult, getConnection, getManager, UpdateResult } from "typeorm";
-import { Usuario } from './models/Usuario';
+import { DeleteResult, getConnection, getManager, UpdateResult } from 'typeorm';
+import { Usuario } from './models/user.model';
 
-Usuario
 export class Operation implements Repository {
-
 	async getUsuarios(): Promise<UserEntity[]> {
-		let usuarioRepository = getManager().getRepository(Usuario);
+		const usuarioRepository = getManager().getRepository(Usuario);
 
 		const user: UserEntity[] = await usuarioRepository
 			.createQueryBuilder('user')
@@ -19,11 +17,11 @@ export class Operation implements Repository {
 	}
 
 	async insert(userEntity: UserEntity): Promise<UserEntity> {
-		let usuarioRepository = getConnection().getRepository(Usuario);
-		let usuario = new Usuario();
+		const usuarioRepository = getConnection().getRepository(Usuario);
+		const usuario = new Usuario();
 
 		usuario.nombres = userEntity.nombres;
-		usuario.primer_apellido =userEntity.primer_apellido;
+		usuario.primer_apellido = userEntity.primer_apellido;
 		usuario.segundo_apellido = userEntity.segundo_apellido;
 		usuario.documento = userEntity.documento;
 		usuario.direccion = userEntity.direccion;
@@ -36,14 +34,20 @@ export class Operation implements Repository {
 		return user;
 	}
 
-	async update(id: number, userEntity: Partial<UserEntity>): Promise<UpdateResult> {
-		let usuarioRepository = getManager().getRepository(Usuario);
-		const user: UpdateResult = await usuarioRepository.update({id: id},userEntity);
+	async update(
+		id: number,
+		userEntity: Partial<UserEntity>
+	): Promise<UpdateResult> {
+		const usuarioRepository = getManager().getRepository(Usuario);
+		const user: UpdateResult = await usuarioRepository.update(
+			{ id: id },
+			userEntity
+		);
 		return user;
 	}
 
 	async delete(id: string): Promise<DeleteResult> {
-		let usuarioRepository = getConnection().getRepository(Usuario);
+		const usuarioRepository = getConnection().getRepository(Usuario);
 		return await usuarioRepository.delete(id);
 	}
 }
