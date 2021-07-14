@@ -6,14 +6,13 @@ import cors from 'cors';
 const app = express();
 
 const corsOptions = {
-    origin: '*',
-    allowedHeaders: ['Authorization','Content-Type'],
-    methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-    credentials: true
-  }
-
+	origin: '*',
+	allowedHeaders: ['Authorization', 'Content-Type'],
+	methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+	preflightContinue: false,
+	optionsSuccessStatus: 204,
+	credentials: true,
+};
 
 app.use(cors(corsOptions));
 

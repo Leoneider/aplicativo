@@ -19,14 +19,23 @@ UsuarioRouter.get(
 		res.status(200).send(result);
 	})
 );
+UsuarioRouter.get(
+	'/:id',
+	Errors.asyncError(async (req: Request, res: Response) => {
+		const id = req.params.id;
+		const userEntity: UserEntity = new UserBuilder().addId(Number(id));
+
+		const result: UserEntity = await useCase.selectUsuario(userEntity);
+		res.status(200).send(result);
+	})
+);
 
 UsuarioRouter.get(
-	'/:email',
+	'/email/:email',
 	Errors.asyncError(async (req: Request, res: Response) => {
-		let email = req.params.email
-		const userEntity: UserEntity = new UserBuilder()
-		.addEmail(email);
-		
+		const email = req.params.email;
+		const userEntity: UserEntity = new UserBuilder().addEmail(email);
+
 		const result: UserEntity = await useCase.selectUsuario(userEntity);
 		res.status(200).send(result);
 	})
