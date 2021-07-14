@@ -4,7 +4,18 @@ import { UsuarioRouter } from './module/infraestructure/UsuarioRouter';
 import cors from 'cors';
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+    origin: '*',
+    allowedHeaders: ['Authorization','Content-Type'],
+    methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    credentials: true
+  }
+
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
