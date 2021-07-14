@@ -1,11 +1,11 @@
-import { DeleteResult } from 'typeorm';
-import { UpdateResult } from 'typeorm';
+// import { DeleteResult } from 'typeorm';
+// import { UpdateResult } from 'typeorm';
 import express, { Request, Response } from 'express';
 import { UserBuilder, UserEntity } from '../domain/user.entity';
 import { Errors } from '../../helpers/errors.helper';
-import { Repository } from '../application/UsuarioRepository';
-import { Operation } from './UsuarioOperation';
-import { UseCase } from '../application/UsuarioUsecase';
+import { Repository } from '../application/usuario-repository';
+import { Operation } from './usuario-operation';
+import { UseCase } from '../application/usuario-usecase';
 
 const UsuarioRouter = express.Router();
 const operation: Repository = new Operation();
@@ -14,7 +14,7 @@ const useCase: UseCase = new UseCase(operation);
 UsuarioRouter.get(
 	'/',
 	Errors.asyncError(async (req: Request, res: Response) => {
-		const userEntity: UserEntity = new UserBuilder()
+		const userEntity: UserEntity = new UserBuilder();
 		const result: UserEntity[] = await useCase.select(userEntity);
 		res.status(200).send(result);
 	})
@@ -35,10 +35,19 @@ UsuarioRouter.get(
 UsuarioRouter.post(
 	'/',
 	Errors.asyncError(async (req: Request, res: Response) => {
-		const { nombres, primer_apellido, segundo_apellido, documento, direccion, email, telefono, cargo_id } = req.body;
+		const {
+			nombres,
+			primer_apellido,
+			segundo_apellido,
+			documento,
+			direccion,
+			email,
+			telefono,
+			cargo_id,
+		} = req.body;
 
-		let date: Date = new Date();
-        	
+		const date: Date = new Date();
+
 		const userEntity: UserEntity = new UserBuilder()
 			.addNombres(nombres)
 			.addPrimerApellido(primer_apellido)
@@ -48,7 +57,7 @@ UsuarioRouter.post(
 			.addEmail(email)
 			.addTelefono(telefono)
 			.addCargoId(cargo_id)
-			.addHasDobleFactor(date)
+			.addHasDobleFactor(date);
 
 		const result: UserEntity = await useCase.insert(userEntity);
 		res.status(201).send(result);
@@ -58,28 +67,27 @@ UsuarioRouter.post(
 UsuarioRouter.patch(
 	'/:id',
 	Errors.asyncError(async (req: Request, res: Response) => {
-	  const userEntity: UserEntity = req.body
-      const result:UpdateResult = await useCase.update( Number(req.params.id) , userEntity)
-	
-	  res.status(200).send({
-		status: 200,
-		message: 'Usuario actualizado correctamente',
-		affected: result.affected
-	  });
+		const userEntity: UserEntity = req.body;
+		const result: any = await useCase.update(Number(req.params.id), userEntity);
 
+		res.status(200).send({
+			status: 200,
+			message: 'Usuario actualizado correctamente',
+			affected: result.affected,
+		});
 	})
 );
 
 UsuarioRouter.delete(
 	'/:id',
 	Errors.asyncError(async (req: Request, res: Response) => {
-		const result:DeleteResult = await useCase.delete(req.params.id);
+		const result: any = await useCase.delete(req.params.id);
 
-		 res.status(200).send({
+		res.status(200).send({
 			status: 200,
 			message: 'Usuario eliminado correctamente',
-			affected: result.affected
-		  });
+			affected: result.raw,
+		});
 	})
 );
 

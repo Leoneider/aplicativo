@@ -1,9 +1,8 @@
-import {MigrationInterface, QueryRunner} from "typeorm";
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class InsertarCargos1624396403239 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`INSERT INTO cargos(id, nombre)VALUES
+	async up(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.query(`INSERT INTO cargos(id, nombre)VALUES
                                (1, 'ejecutivo comercial'),
                                (2, 'técnico'),
                                (3, 'asesor línea agente'),
@@ -21,13 +20,10 @@ export class InsertarCargos1624396403239 implements MigrationInterface {
                                (15, 'supervisor reparaciones agentes corresponsales'),
                                (16, 'staff'),
                                (17, 'administrador'),
-                               (18, 'supervisor línea agente')`);                   
-    }
+                               (18, 'supervisor línea agente')`);
+	}
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-    }
-
+	async down(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.query(``);
+	}
 }
-
-
-
