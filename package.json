@@ -21,15 +21,15 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/cursosdevfull/NodeJS_Group03.git"
+		"url": "git+https://github.com/Leoneider/aplicativo.git"
 	},
 	"keywords": [],
 	"author": "Leoneider Trigos Guerrero",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/cursosdevfull/NodeJS_Group03/issues"
+		"url": "https://github.com/Leoneider/aplicativo/issues"
 	},
-	"homepage": "https://github.com/cursosdevfull/NodeJS_Group03#readme",
+	"homepage": "https://github.com/Leoneider/aplicativo#readme",
 	"dependencies": {
 		"amqplib": "^0.6.0",
 		"aws-sdk": "^2.804.0",
