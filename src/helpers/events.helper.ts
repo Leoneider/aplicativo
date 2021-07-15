@@ -4,13 +4,13 @@ export class EventsHelper {
 	private static instance: EventsHelper;
 	private emitter: EventEmitter;
 
-	private constructor() {}
+	// private constructor() {}
 
 	private setEmitter() {
 		this.emitter = new EventEmitter();
 	}
 
-	public static handler(): EventEmitter {
+	private static handler(): EventEmitter {
 		if (!EventsHelper.instance) {
 			EventsHelper.instance = new EventsHelper();
 			EventsHelper.instance.setEmitter();
