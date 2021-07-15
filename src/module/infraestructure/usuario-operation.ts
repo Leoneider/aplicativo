@@ -8,24 +8,19 @@ export class Operation implements Repository {
 	async getUsuarios(): Promise<UserEntity[]> {
 		const usuarioRepository = getManager().getRepository(Usuario);
 
-		const user: UserEntity[] = await usuarioRepository
-			.createQueryBuilder('user')
-			.select()
-			.getRawMany();
+		const user: UserEntity[] = await usuarioRepository.find();
 
 		return user;
 	}
 
 	async getUsuario(userEntity: Partial<UserEntity>): Promise<UserEntity> {
-		let usuarioRepository = getManager().getRepository(Usuario);
-
-		const user: UserEntity = await usuarioRepository.findOne({ where: userEntity })
-		
+		const usuarioRepository = getManager().getRepository(Usuario);
+		const user: UserEntity = await usuarioRepository.findOne({
+			where: userEntity,
+		});
 
 		return user;
 	}
-
-
 
 	async insert(userEntity: UserEntity): Promise<UserEntity> {
 		const usuarioRepository = getConnection().getRepository(Usuario);
