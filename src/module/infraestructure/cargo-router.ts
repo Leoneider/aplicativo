@@ -21,7 +21,4 @@ CargoRouter.get(
 	})
 );
 
-
-
-
 export { CargoRouter };
