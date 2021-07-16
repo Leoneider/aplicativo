@@ -17,6 +17,7 @@ export class Operation implements Repository {
 		const usuarioRepository = getManager().getRepository(Usuario);
 		const user: UserEntity = await usuarioRepository.findOne({
 			where: userEntity,
+			relations: ["cargo"]
 		});
 
 		return user;
