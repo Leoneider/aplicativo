@@ -1,16 +1,16 @@
 /* eslint-disable no-use-before-define */
 export class RolEntity {
 	id: number;
-	nombres: string;
+	nombre: string;
 
 	constructor(ob: RolBuilder) {
-		this.nombres = ob.nombres;
+		this.nombre = ob.nombre;
 	}
 }
 
 export class RolBuilder {
 	id: number;
-	nombres: string;
+	nombre: string;
 
 	addId(id: number): this {
 		this.id = id;
@@ -18,7 +18,7 @@ export class RolBuilder {
 	}
 
 	addNombres(nombres: string): this {
-		this.nombres = nombres;
+		this.nombre = nombres;
 		return this;
 	}
 
