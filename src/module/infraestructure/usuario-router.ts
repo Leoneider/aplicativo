@@ -69,7 +69,12 @@ UsuarioRouter.post(
 			.addHasDobleFactor(date);
 
 		const result: UserEntity = await useCase.insert(userEntity);
-		res.status(201).send(result);
+
+		res.status(201).send({
+			status: 200,
+			message: 'Usuario creado correctamente',
+			result,
+		});
 	})
 );
 
