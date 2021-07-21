@@ -62,7 +62,7 @@ export class UserBuilder {
 	}
 
 	addDocumento(documento: string): this {
-		this.documento = documento;
+		if(documento) this.documento = documento;
 		return this;
 	}
 
@@ -72,7 +72,7 @@ export class UserBuilder {
 	}
 
 	addEmail(email: string): this {
-		this.email = email;
+		if(email) this.email = email;
 		return this;
 	}
 
