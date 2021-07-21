@@ -65,7 +65,7 @@ UsuarioRouter.post(
 			.addDireccion(direccion)
 			.addEmail(email)
 			.addTelefono(telefono)
-			.addCargoId(cargo_id)
+			.addCargo_id(cargo_id)
 			.addHasDobleFactor(date);
 
 		const result: UserEntity = await useCase.insert(userEntity);

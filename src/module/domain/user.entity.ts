@@ -23,7 +23,6 @@ export class UserEntity {
 		this.path_imagen = ob.path_imagen;
 		this.estado = ob.estado;
 		this.has_doble_factor = ob.has_doble_factor;
-		this.cargo_id = ob.cargo_id;
 	}
 }
 
@@ -62,7 +61,7 @@ export class UserBuilder {
 	}
 
 	addDocumento(documento: string): this {
-		if(documento) this.documento = documento;
+		if (documento) this.documento = documento;
 		return this;
 	}
 
@@ -72,7 +71,7 @@ export class UserBuilder {
 	}
 
 	addEmail(email: string): this {
-		if(email) this.email = email;
+		if (email) this.email = email;
 		return this;
 	}
 
@@ -96,8 +95,8 @@ export class UserBuilder {
 		return this;
 	}
 
-	addCargoId(cargo: number): this {
-		this.cargo_id = cargo;
+	addCargo_id(cargo_id: number): this {
+		this.cargo_id = cargo_id;
 		return this;
 	}
 
