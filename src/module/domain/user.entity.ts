@@ -23,7 +23,6 @@ export class UserEntity {
 		this.path_imagen = ob.path_imagen;
 		this.estado = ob.estado;
 		this.has_doble_factor = ob.has_doble_factor;
-		this.cargo_id = ob.cargo_id;
 	}
 }
 
@@ -96,8 +95,8 @@ export class UserBuilder {
 		return this;
 	}
 
-	addCargoId(cargo: number): this {
-		this.cargo_id = cargo;
+	addCargo_id(cargo_id: number): this {
+		this.cargo_id = cargo_id;
 		return this;
 	}
 

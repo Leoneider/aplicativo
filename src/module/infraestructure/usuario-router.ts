@@ -65,7 +65,7 @@ UsuarioRouter.post(
 			.addDireccion(direccion)
 			.addEmail(email)
 			.addTelefono(telefono)
-			.addCargoId(cargo_id)
+			.addCargo_id(cargo_id)
 			.addHasDobleFactor(date);
 
 		const result: UserEntity = await useCase.insert(userEntity);
@@ -108,11 +108,15 @@ UsuarioRouter.delete(
 UsuarioRouter.post(
 	'/disponible',
 	Errors.asyncError(async (req: Request, res: Response) => {
-		const { documento } = req.body;
+		const { documento, email } = req.body;
 
-		const userEntity: UserEntity = new UserBuilder().addDocumento(documento);
+		const userEntity: UserEntity = new UserBuilder()
+			.addDocumento(documento)
+			.addEmail(email);
 
 		const result: UserEntity = await useCase.selectUsuario(userEntity);
+		const isDsiponible: boolean = result ? false : true;
+
 		const isDsiponible: boolean = result ? false : true;
 
 		res.status(200).send({

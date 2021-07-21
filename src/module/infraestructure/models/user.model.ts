@@ -44,7 +44,6 @@ export class Usuario {
 	@Column({
 		unique: true,
 	})
-	@Column()
 	email: string;
 
 	@Column()
