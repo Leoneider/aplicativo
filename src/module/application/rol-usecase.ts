@@ -4,8 +4,8 @@ import { RolRepository } from './rol-repository';
 export class RolUseCase {
 	constructor(private rolOperation: RolRepository) {}
 
-	async select(cargoEntity: RolEntity): Promise<RolEntity[]> {
-		const result = await this.rolOperation.getRoles(cargoEntity);
+	async select(rolEntity: RolEntity): Promise<RolEntity[]> {
+		const result = await this.rolOperation.getRoles(rolEntity);
 		return result;
 	}
 }
