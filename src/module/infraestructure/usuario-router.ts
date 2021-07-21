@@ -116,9 +116,6 @@ UsuarioRouter.post(
 
 		const result: UserEntity = await useCase.selectUsuario(userEntity);
 		const isDsiponible: boolean = result ? false : true;
-
-		const isDsiponible: boolean = result ? false : true;
-
 		res.status(200).send({
 			isDsiponible,
 		});
