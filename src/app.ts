@@ -13,7 +13,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/usuario', UsuarioRouter);
 app.use('/cargo', CargoRouter);
 app.use('/rol', RolRouter);
+
 app.use('/modulos', ModuloRouter);
+app.use('/funcionalidades', ModuloRouter);
+
 app.get('/health-check', (req: Request, res: any) => res.send('I am alive'));
 
 app.use(Errors.pathNotFoundError);

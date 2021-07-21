@@ -108,23 +108,18 @@ UsuarioRouter.delete(
 UsuarioRouter.post(
 	'/disponible',
 	Errors.asyncError(async (req: Request, res: Response) => {
-		const {
-			documento,
-			email,
-		} = req.body;
-
-		const date: Date = new Date();
+		const { documento, email } = req.body;
 
 		const userEntity: UserEntity = new UserBuilder()
 			.addDocumento(documento)
-			.addEmail(email)
+			.addEmail(email);
 
 		const result: UserEntity = await useCase.selectUsuario(userEntity);
 
-		let isDsiponible:boolean = (result)? false : true;
+		const isDsiponible: boolean = result ? false : true;
 
 		res.status(200).send({
-			isDsiponible
+			isDsiponible,
 		});
 	})
 );
