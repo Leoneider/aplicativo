@@ -9,8 +9,10 @@ export class Operation implements Repository {
 	async getMenu(documento: string): Promise<MenuEntity[]> {
 		let menu: MenuEntity;
 		const menus: MenuEntity[] = [];
+
 		const dataMenu: DataMenu[] = await this.getDataMenu(documento);
 		const modulos: SubmoduloEntity[] = await this.getModulos();
+
 		modulos.forEach(modulo => {
 			const moduloId = modulo.id;
 			let hasModulo = false;
@@ -19,19 +21,19 @@ export class Operation implements Repository {
 			let pathModule: string;
 
 			dataMenu.forEach(dataItem => {
-				if (dataItem.modulo_id === moduloId) {
-					hasModulo = true;
-					pathModule = modulo.path;
-					// Agrega funcionalidad
-					if (dataItem.vista_is_funcionalidad) {
-						path = new MenuBuilder()
-							.addlabel(dataItem.vista_nombre)
-							.addIcon(dataItem.vista_icon)
-							.addRouterLink([pathModule + '/' + dataItem.vista_path]);
-						paths.push(path);
-					} else {
-						// Agrega permisos a la funcionalidad
-					}
+				if (dataItem.modulo_id !== moduloId) return;
+
+				hasModulo = true;
+				pathModule = modulo.path;
+				// Agrega funcionalidad
+				if (dataItem.vista_is_funcionalidad) {
+					path = new MenuBuilder()
+						.addlabel(dataItem.vista_nombre)
+						.addIcon(dataItem.vista_icon)
+						.addRouterLink([pathModule + '/' + dataItem.vista_path]);
+					paths.push(path);
+				} else {
+					// Agrega permisos a la funcionalidad
 				}
 			});
 
