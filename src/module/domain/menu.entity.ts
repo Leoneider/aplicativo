@@ -5,6 +5,7 @@ export class MenuEntity {
 	routerLink: string[];
 	vistas: string[];
 	items: MenuEntity[];
+	permisos: MenuEntity[];
 
 	constructor(ob: MenuBuilder) {
 		this.label = ob.label;
@@ -12,6 +13,7 @@ export class MenuEntity {
 		this.routerLink = ob.routerLink;
 		this.vistas = ob.vistas;
 		this.items = ob.items;
+		this.permisos = ob.permisos;
 	}
 }
 
@@ -21,6 +23,7 @@ export class MenuBuilder {
 	routerLink: string[];
 	vistas: string[];
 	items: MenuEntity[];
+	permisos: MenuEntity[];
 
 	addlabel(label: string): this {
 		this.label = label;
@@ -44,6 +47,11 @@ export class MenuBuilder {
 
 	addItems(items: MenuEntity[]): this {
 		this.items = items;
+		return this;
+	}
+
+	addPermisos(items: MenuEntity[]): this {
+		this.permisos = items;
 		return this;
 	}
 

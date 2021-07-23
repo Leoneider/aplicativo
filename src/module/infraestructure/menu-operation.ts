@@ -14,28 +14,67 @@ export class Operation implements Repository {
 		const modulos: SubmoduloEntity[] = await this.getModulos();
 
 		modulos.forEach(modulo => {
-			const moduloId = modulo.id;
 			let hasModulo = false;
-			const paths: MenuEntity[] = [];
-			let path: MenuEntity;
 			let pathModule: string;
+			const moduloId = modulo.id;
+			let path: MenuEntity;
+			const paths: MenuEntity[] = [];
+
+			let vista: MenuEntity;
+			let vistas: MenuEntity[] = [];
+			let funcionalidadIdTmp: number;
+
+			let label: string;
+			let icon: string;
+			let routerLink: string;
 
 			dataMenu.forEach(dataItem => {
-				if (dataItem.modulo_id !== moduloId) return;
-
-				hasModulo = true;
-				pathModule = modulo.path;
-				// Agrega funcionalidad
-				if (dataItem.vista_is_funcionalidad) {
-					path = new MenuBuilder()
-						.addlabel(dataItem.vista_nombre)
-						.addIcon(dataItem.vista_icon)
-						.addRouterLink([pathModule + '/' + dataItem.vista_path]);
-					paths.push(path);
-				} else {
-					// Agrega permisos a la funcionalidad
+				if (dataItem.modulo_id === moduloId) {
+					hasModulo = true;
+					pathModule = modulo.path;
+					// Agrega funcionalidad
+					if (dataItem.vista_is_funcionalidad) {
+						if (
+							funcionalidadIdTmp &&
+							funcionalidadIdTmp !== dataItem.vista_funcionalidad_id
+						) {
+							path = new MenuBuilder()
+								.addlabel(label)
+								.addIcon(icon)
+								.addRouterLink([routerLink])
+								.addPermisos(vistas);
+							paths.push(path);
+							vistas = [];
+							label = '';
+							icon = '';
+							routerLink = '';
+						}
+						funcionalidadIdTmp = dataItem.vista_funcionalidad_id;
+						label = dataItem.vista_nombre;
+						icon = dataItem.vista_icon;
+						routerLink = pathModule + '/' + dataItem.vista_path;
+					} else {
+						// Agrega vistas a la funcionalidad
+						path = undefined;
+						vista = new MenuBuilder()
+							.addlabel(dataItem.vista_nombre)
+							.addIcon(dataItem.vista_icon)
+							.addRouterLink([pathModule + '/' + dataItem.vista_path]);
+						vistas.push(vista);
+					}
 				}
 			});
+
+			path = new MenuBuilder()
+				.addlabel(label)
+				.addIcon(icon)
+				.addRouterLink([routerLink])
+				.addPermisos(vistas);
+			paths.push(path);
+			vistas = [];
+			label = '';
+			icon = '';
+			routerLink = '';
 
 			if (hasModulo) {
 				menu = new MenuBuilder()
