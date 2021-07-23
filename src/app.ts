@@ -5,6 +5,7 @@ import { ModuloRouter } from './module/infraestructure/modulo-router';
 import { RolRouter } from './module/infraestructure/rol-router';
 import { UsuarioRouter } from './module/infraestructure/usuario-router';
 import { FuncionalidadRouter } from './module/infraestructure/funcionalidad-router';
+import { MenuRouter } from './module/infraestructure/menu-router';
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/usuario', UsuarioRouter);
 app.use('/cargo', CargoRouter);
 app.use('/rol', RolRouter);
+app.use('/menu', MenuRouter);
 
 app.use('/modulos', ModuloRouter);
 app.use('/funcionalidades', FuncionalidadRouter);

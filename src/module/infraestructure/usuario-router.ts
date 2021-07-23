@@ -1,5 +1,3 @@
-// import { DeleteResult } from 'typeorm';
-// import { UpdateResult } from 'typeorm';
 import express, { Request, Response } from 'express';
 import { UserBuilder, UserEntity } from '../domain/user.entity';
 import { Errors } from '../../helpers/errors.helper';
