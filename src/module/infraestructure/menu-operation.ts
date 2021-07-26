@@ -9,8 +9,10 @@ export class Operation implements Repository {
 	async getMenu(documento: string): Promise<MenuEntity[]> {
 		let menu: MenuEntity;
 		const menus: MenuEntity[] = [];
+
 		const dataMenu: DataMenu[] = await this.getDataMenu(documento);
 		const modulos: SubmoduloEntity[] = await this.getModulos();
+
 		modulos.forEach(modulo => {
 			let hasModulo = false;
 			let pathModule: string;
