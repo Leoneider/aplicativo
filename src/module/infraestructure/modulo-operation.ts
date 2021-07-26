@@ -1,15 +1,15 @@
+import { Submodulo } from './models/submodulo.model';
 import { ModuloRepository } from '../application/modulo-repository';
-import { ModuloEntity } from '../domain/modulo.entity';
 
 import { getManager } from 'typeorm';
-import { Modulo } from './models/modulo.model';
+import { SubmoduloEntity } from '../domain/submodulo.entity';
 
 export class ModuloOperation implements ModuloRepository {
-	async getModulos(): Promise<ModuloEntity[]> {
-		const moduloRepository = getManager().getRepository(Modulo);
-
-		const modulo: ModuloEntity[] = await moduloRepository.find();
-
-		return modulo;
+	async getModulos(): Promise<SubmoduloEntity[]> {
+		const submoduloRepository = getManager().getRepository(Submodulo);
+		const submodulo: SubmoduloEntity[] = await submoduloRepository.find({
+			where: { is_modullo: true },
+		});
+		return submodulo;
 	}
 }

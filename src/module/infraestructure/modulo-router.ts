@@ -1,4 +1,7 @@
-import { ModuloEntity, ModuloBuilder } from './../domain/modulo.entity';
+import {
+	SubmoduloEntity,
+	SubmoduloBuilder,
+} from './../domain/submodulo.entity';
 import { ModuloUseCase } from './../application/modulo-usecase';
 import { ModuloRepository } from './../application/modulo-repository';
 import express, { Request, Response } from 'express';
@@ -13,8 +16,8 @@ const moduloUseCase: ModuloUseCase = new ModuloUseCase(operation);
 ModuloRouter.get(
 	'/',
 	Errors.asyncError(async (req: Request, res: Response) => {
-		const moduloEntity: ModuloEntity = new ModuloBuilder();
-		const result: ModuloEntity[] = await moduloUseCase.select(moduloEntity);
+		const moduloEntity: SubmoduloEntity = new SubmoduloBuilder();
+		const result: SubmoduloEntity[] = await moduloUseCase.select(moduloEntity);
 		res.status(200).send(result);
 	})
 );

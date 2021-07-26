@@ -1,5 +1,4 @@
-import { ModuloEntity } from './../domain/modulo.entity';
-
+import { SubmoduloEntity } from './../domain/submodulo.entity';
 export interface ModuloRepository {
-	getModulos(moduloEntity: ModuloEntity): Promise<ModuloEntity[]>;
+	getModulos(moduloEntity: SubmoduloEntity): Promise<SubmoduloEntity[]>;
 }

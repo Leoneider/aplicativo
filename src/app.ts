@@ -6,6 +6,7 @@ import { RolRouter } from './module/infraestructure/rol-router';
 import { UsuarioRouter } from './module/infraestructure/usuario-router';
 import { FuncionalidadRouter } from './module/infraestructure/funcionalidad-router';
 import { MenuRouter } from './module/infraestructure/menu-router';
+import { PermisoRouter } from './module/infraestructure/permiso-router';
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use('/menu', MenuRouter);
 
 app.use('/modulos', ModuloRouter);
 app.use('/funcionalidades', FuncionalidadRouter);
+app.use('/permisos', PermisoRouter);
 
 app.get('/health-check', (req: Request, res: any) => res.send('I am alive'));
 

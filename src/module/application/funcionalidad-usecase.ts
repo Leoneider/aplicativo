@@ -12,4 +12,13 @@ export class FuncionalidadUseCase {
 		);
 		return result;
 	}
+
+	async getFuncionalidadesPorModulo(
+		idModulo: number
+	): Promise<FuncionalidadEntity[]> {
+		const result = await this.funcionalidadOperation.getFuncionalidadesPorModulo(
+			idModulo
+		);
+		return result;
+	}
 }
