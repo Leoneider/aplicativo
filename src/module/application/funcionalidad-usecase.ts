@@ -1,12 +1,10 @@
-import { FuncionalidadEntity } from './../domain/funcionalidad.entity';
+import { PermisoEntity } from './../domain/permiso.entity';
 import { FuncionalidadRepository } from './funcionalidad-repository';
 
 export class FuncionalidadUseCase {
 	constructor(private funcionalidadOperation: FuncionalidadRepository) {}
 
-	async select(
-		funcionalidadEntity: FuncionalidadEntity
-	): Promise<FuncionalidadEntity[]> {
+	async select(funcionalidadEntity: PermisoEntity): Promise<PermisoEntity[]> {
 		const result = await this.funcionalidadOperation.getFuncionalidades(
 			funcionalidadEntity
 		);
@@ -15,7 +13,7 @@ export class FuncionalidadUseCase {
 
 	async getFuncionalidadesPorModulo(
 		idModulo: number
-	): Promise<FuncionalidadEntity[]> {
+	): Promise<PermisoEntity[]> {
 		const result = await this.funcionalidadOperation.getFuncionalidadesPorModulo(
 			idModulo
 		);

@@ -17,7 +17,6 @@ app.use('/usuario', UsuarioRouter);
 app.use('/cargo', CargoRouter);
 app.use('/rol', RolRouter);
 app.use('/menu', MenuRouter);
-
 app.use('/modulos', ModuloRouter);
 app.use('/funcionalidades', FuncionalidadRouter);
 app.use('/permisos', PermisoRouter);

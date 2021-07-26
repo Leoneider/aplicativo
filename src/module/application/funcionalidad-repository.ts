@@ -1,9 +1,8 @@
-import { FuncionalidadEntity } from './../domain/funcionalidad.entity';
-
+import { PermisoEntity } from './../domain/permiso.entity';
 export interface FuncionalidadRepository {
 	getFuncionalidades(
-		funcionalidadEntity: FuncionalidadEntity
-	): Promise<FuncionalidadEntity[]>;
+		funcionalidadEntity: PermisoEntity
+	): Promise<PermisoEntity[]>;
 
-	getFuncionalidadesPorModulo(idModulo: number): Promise<FuncionalidadEntity[]>;
+	getFuncionalidadesPorModulo(idModulo: number): Promise<PermisoEntity[]>;
 }

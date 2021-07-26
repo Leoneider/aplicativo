@@ -1,24 +1,27 @@
+import { PermisoEntity } from './../domain/permiso.entity';
+import { Vista } from './models/vista.model';
 import { FuncionalidadRepository } from '../application/funcionalidad-repository';
-import { FuncionalidadEntity } from '../domain/funcionalidad.entity';
-
 import { getManager } from 'typeorm';
-import { Funcionalidad } from './models/funcionalidad.model.';
-export class FuncionalidadOperation implements FuncionalidadRepository {
-	async getFuncionalidades(): Promise<FuncionalidadEntity[]> {
-		const funcionalidadRepository = getManager().getRepository(Funcionalidad);
 
-		const funcionalidad: FuncionalidadEntity[] = await funcionalidadRepository.find();
+export class FuncionalidadOperation implements FuncionalidadRepository {
+	async getFuncionalidades(): Promise<PermisoEntity[]> {
+		const funcionalidadRepository = getManager().getRepository(Vista);
+
+		const funcionalidad: PermisoEntity[] = await funcionalidadRepository.find();
 
 		return funcionalidad;
 	}
 
 	async getFuncionalidadesPorModulo(
-		id: number
-	): Promise<FuncionalidadEntity[]> {
-		const funcionalidadRepository = getManager().getRepository(Funcionalidad);
-		const funcionalidad: FuncionalidadEntity[] = await funcionalidadRepository.find(
-			{ where: { submodulo_id: id } }
-		);
+		idModulo: number
+	): Promise<PermisoEntity[]> {
+		const vistaRepository = getManager().getRepository(Vista);
+		const funcionalidad: PermisoEntity[] = await vistaRepository
+			.createQueryBuilder('vista')
+			.leftJoin('vista.funcionalidad', 'funcionalidad')
+			.where('funcionalidad.submodulo_id = :idModulo', { idModulo: idModulo })
+			.andWhere('is_funcionalidad = true')
+			.getMany();
 		return funcionalidad;
 	}
 }
