@@ -1,5 +1,3 @@
-// import { DeleteResult } from 'typeorm';
-// import { UpdateResult } from 'typeorm';
 import express, { Request, Response } from 'express';
 import { UserBuilder, UserEntity } from '../domain/user.entity';
 import { Errors } from '../../helpers/errors.helper';
@@ -65,11 +63,16 @@ UsuarioRouter.post(
 			.addDireccion(direccion)
 			.addEmail(email)
 			.addTelefono(telefono)
-			.addCargoId(cargo_id)
+			.addCargo_id(cargo_id)
 			.addHasDobleFactor(date);
 
 		const result: UserEntity = await useCase.insert(userEntity);
-		res.status(201).send(result);
+
+		res.status(201).send({
+			status: 200,
+			message: 'Usuario creado correctamente',
+			result,
+		});
 	})
 );
 
@@ -96,6 +99,23 @@ UsuarioRouter.delete(
 			status: 200,
 			message: 'Usuario eliminado correctamente',
 			affected: result.raw,
+		});
+	})
+);
+
+UsuarioRouter.post(
+	'/disponible',
+	Errors.asyncError(async (req: Request, res: Response) => {
+		const { documento, email } = req.body;
+
+		const userEntity: UserEntity = new UserBuilder()
+			.addDocumento(documento)
+			.addEmail(email);
+
+		const result: UserEntity = await useCase.selectUsuario(userEntity);
+		const isDsiponible: boolean = result ? false : true;
+		res.status(200).send({
+			isDsiponible,
 		});
 	})
 );

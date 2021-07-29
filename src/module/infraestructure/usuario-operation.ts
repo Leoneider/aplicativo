@@ -5,11 +5,12 @@ import { DeleteResult, getConnection, getManager, UpdateResult } from 'typeorm';
 import { Usuario } from './models/user.model';
 
 export class Operation implements Repository {
-	async getUsuarios(): Promise<UserEntity[]> {
+	async getUsuarios(userEntity: Partial<UserEntity>): Promise<UserEntity[]> {
 		const usuarioRepository = getManager().getRepository(Usuario);
-
-		const user: UserEntity[] = await usuarioRepository.find();
-
+		const user: UserEntity[] = await usuarioRepository.find({
+			where: userEntity,
+			relations: ['cargo'],
+		});
 		return user;
 	}
 
@@ -17,6 +18,7 @@ export class Operation implements Repository {
 		const usuarioRepository = getManager().getRepository(Usuario);
 		const user: UserEntity = await usuarioRepository.findOne({
 			where: userEntity,
+			relations: ['cargo'],
 		});
 
 		return user;

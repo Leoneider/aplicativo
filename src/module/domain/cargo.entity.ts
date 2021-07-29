@@ -1,14 +1,14 @@
 /* eslint-disable no-use-before-define */
-export class RolEntity {
+export class CargoEntity {
 	id: number;
 	nombre: string;
 
-	constructor(ob: RolBuilder) {
+	constructor(ob: CargoBuilder) {
 		this.nombre = ob.nombre;
 	}
 }
 
-export class RolBuilder {
+export class CargoBuilder {
 	id: number;
 	nombre: string;
 
@@ -17,12 +17,12 @@ export class RolBuilder {
 		return this;
 	}
 
-	addNombres(nombres: string): this {
-		this.nombre = nombres;
+	addNombres(nombre: string): this {
+		this.nombre = nombre;
 		return this;
 	}
 
-	build(): RolEntity {
-		return new RolEntity(this);
+	build(): CargoEntity {
+		return new CargoEntity(this);
 	}
 }
